@@ -24,5 +24,10 @@ public class PageGeneratorManager {
 	public static RewardPointPageObject getRewardPointPage(WebDriver driver) {
 		return new RewardPointPageObject(driver);
 	}
+	public static LoginPageObject getUserHomePage(WebDriver driver) {
+		return new LoginPageObject(driver);
+	}
+	
+	
 
 }
