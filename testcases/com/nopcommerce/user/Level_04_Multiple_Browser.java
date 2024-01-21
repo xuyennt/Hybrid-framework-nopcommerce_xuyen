@@ -10,14 +10,14 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
-import pageObjects.HomePageObject;
-import pageObjects.RegisterPageObject;
+import pageObjects.nopCommerce.User.UserHomePageObject;
+import pageObjects.nopCommerce.User.UserRegisterPageObject;
 
 public class Level_04_Multiple_Browser extends BaseTest {
 	WebDriver driver;
 	String emailAddress;
-	HomePageObject homePage;
-	RegisterPageObject registerPage;
+	UserHomePageObject homePage;
+	UserRegisterPageObject registerPage;
 
 	//private WebDriver driverTestClass;
 
@@ -29,8 +29,8 @@ public class Level_04_Multiple_Browser extends BaseTest {
 		System.out.println("Run on" + browserName);
 
 		emailAddress = "afc" + generateFakeNumber() + "@mail.vn";
-		homePage = new HomePageObject(driver);
-		registerPage = new RegisterPageObject(driver);
+		homePage = new UserHomePageObject(driver);
+		registerPage = new UserRegisterPageObject(driver);
 
 	}
 

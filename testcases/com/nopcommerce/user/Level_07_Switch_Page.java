@@ -10,25 +10,25 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
-import pageObjects.AddressPageObject;
-import pageObjects.CustomerInforPageObject;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.MyProductReviewPageObject;
-import pageObjects.PageGeneratorManager;
-import pageObjects.RegisterPageObject;
-import pageObjects.RewardPointPageObject;
+import pageObjects.nopCommerce.User.UserAddressPageObject;
+import pageObjects.nopCommerce.User.UserCustomerInforPageObject;
+import pageObjects.nopCommerce.User.UserHomePageObject;
+import pageObjects.nopCommerce.User.UserLoginPageObject;
+import pageObjects.nopCommerce.User.UserMyProductReviewPageObject;
+import pageObjects.nopCommerce.User.PageGeneratorManager;
+import pageObjects.nopCommerce.User.UserRegisterPageObject;
+import pageObjects.nopCommerce.User.UserRewardPointPageObject;
 
 public class Level_07_Switch_Page extends BaseTest {
 	WebDriver driver;
 	String firstName, lastName, password, emailAddress;
-	HomePageObject homePage;
-	RegisterPageObject registerPage;
-	private LoginPageObject loginPage;
-	private CustomerInforPageObject customerInforPage;
-	private AddressPageObject addressPage;
-	private MyProductReviewPageObject myProductReviewPage;
-	private RewardPointPageObject rewardPointPage;
+	UserHomePageObject homePage;
+	UserRegisterPageObject registerPage;
+	private UserLoginPageObject loginPage;
+	private UserCustomerInforPageObject customerInforPage;
+	private UserAddressPageObject addressPage;
+	private UserMyProductReviewPageObject myProductReviewPage;
+	private UserRewardPointPageObject rewardPointPage;
 
 	String projectPath = System.getProperty("user.dir");
 	String osName = System.getProperty("os.name");
@@ -38,7 +38,7 @@ public class Level_07_Switch_Page extends BaseTest {
 	public void beforeClass(String browserName) {
 
 		driver = getBrowserDriver(browserName);
-		homePage = PageGeneratorManager.getHomePage(driver);
+		homePage = PageGeneratorManager.getUserHomePage(driver);
 
 		firstName = "Automation";
 		lastName = "FC";

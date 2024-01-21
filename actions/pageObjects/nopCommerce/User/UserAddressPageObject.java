@@ -1,13 +1,13 @@
-package pageObjects;
+package pageObjects.nopCommerce.User;
 
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
 
-public class AddressPageObject extends BasePage{
+public class UserAddressPageObject extends BasePage{
 	 WebDriver driver;
 
-	public AddressPageObject(WebDriver driver) {
+	public UserAddressPageObject(WebDriver driver) {
 		this.driver = driver;
 
 	}

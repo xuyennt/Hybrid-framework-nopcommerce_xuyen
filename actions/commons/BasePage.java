@@ -15,19 +15,21 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import pageObjects.AddressPageObject;
-import pageObjects.CustomerInforPageObject;
-import pageObjects.MyProductReviewPageObject;
-import pageObjects.PageGeneratorManager;
-import pageObjects.RewardPointPageObject;
-import pageUIs.BasePageUI;
+import pageObject.nopCommerce.admin.AdminLoginPageObject;
+import pageObjects.nopCommerce.User.PageGeneratorManager;
+import pageObjects.nopCommerce.User.UserAddressPageObject;
+import pageObjects.nopCommerce.User.UserCustomerInforPageObject;
+import pageObjects.nopCommerce.User.UserHomePageObject;
+import pageObjects.nopCommerce.User.UserMyProductReviewPageObject;
+import pageObjects.nopCommerce.User.UserRewardPointPageObject;
+import pageUIs.nopCommerce.user.BasePageUI;
 
 public class BasePage {
-	
+
 	public static BasePage getBasePageObject() {
 		return new BasePage();
 	}
-	
+
 	public void openPageUrl(WebDriver driver, String pageUrl) {
 		driver.get(pageUrl);
 	}
@@ -286,7 +288,8 @@ public class BasePage {
 
 	public String getElementValidationMessage(WebDriver driver, String locator) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-		return (String) jsExecutor.executeScript("return arguments[0].validationMessage;", getWebElement(driver, locator));
+		return (String) jsExecutor.executeScript("return arguments[0].validationMessage;",
+				getWebElement(driver, locator));
 	}
 
 	public boolean isImageLoaded(WebDriver driver, String locator) {
@@ -300,35 +303,56 @@ public class BasePage {
 			return false;
 		}
 	}
+
 	public void waitForElementVisible(WebDriver driver, String locator) {
-		new WebDriverWait(driver,30).until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator)));
+		new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator)));
 	}
+
 	public void waitForElementInvisible(WebDriver driver, String locator) {
-		new WebDriverWait(driver,30).until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(locator)));
+		new WebDriverWait(driver, 30).until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(locator)));
 	}
+
 	public void waitForElementClickable(WebDriver driver, String locator) {
-		new WebDriverWait(driver,30).until(ExpectedConditions.elementToBeClickable(getByXpath(locator)));
+		new WebDriverWait(driver, 30).until(ExpectedConditions.elementToBeClickable(getByXpath(locator)));
 	}
-	//16/01/24
-	public AddressPageObject openAddressPage(WebDriver driver) {
+
+	// 16/01/24
+	public UserAddressPageObject openAddressPage(WebDriver driver) {
 		waitForElementClickable(driver, BasePageUI.ADDRESS_LINK);
 		clickToElement(driver, BasePageUI.ADDRESS_LINK);
-		return PageGeneratorManager.getAddressPage(driver);
+		return PageGeneratorManager.getUserAddressPage(driver);
 	}
-	public MyProductReviewPageObject openMyProductReviewPage(WebDriver driver) {
+
+	public UserMyProductReviewPageObject openMyProductReviewPage(WebDriver driver) {
 		waitForElementClickable(driver, BasePageUI.MY_PRODUCT_REVIEW_LINKS);
 		clickToElement(driver, BasePageUI.MY_PRODUCT_REVIEW_LINKS);
-		return PageGeneratorManager.getMyProductReviewPage(driver);
+		return PageGeneratorManager.getUserMyProductReviewPage(driver);
 	}
-	public RewardPointPageObject openRewardPoint(WebDriver driver) {
+
+	public UserRewardPointPageObject openRewardPoint(WebDriver driver) {
 		waitForElementClickable(driver, BasePageUI.REWARD_POIN_LINKS);
 		clickToElement(driver, BasePageUI.REWARD_POIN_LINKS);
-		return PageGeneratorManager.getRewardPointPage(driver);
-	}//openAddressPage
-	public CustomerInforPageObject openCustomerInforPage(WebDriver driver) {
+		return PageGeneratorManager.getUSerRewardPointPage(driver);
+	}// openAddressPage
+
+	public UserCustomerInforPageObject openCustomerInforPage(WebDriver driver) {
 		waitForElementClickable(driver, BasePageUI.CUSTOMER_INFOR_LINK);
 		clickToElement(driver, BasePageUI.CUSTOMER_INFOR_LINK);
-		return PageGeneratorManager.getMyAccountPage(driver);
+		return PageGeneratorManager.getUserMyAccountPage(driver);
+	}
+
+	public UserHomePageObject clickToLogoutLinkAtUserPage(WebDriver driver) {
+		waitForElementClickable(driver, BasePageUI.LOGOUT_LINK_AT_USER);
+		clickToElement(driver, BasePageUI.LOGOUT_LINK_AT_USER);
+		return PageGeneratorManager.getUserHomePage(driver);
+
+	}
+
+	public AdminLoginPageObject clickToLogoutLinkAtAdminPage(WebDriver driver) {
+		waitForElementClickable(driver, BasePageUI.LOGOUT_LINK_AT_ADMIN);
+		clickToElement(driver, BasePageUI.LOGOUT_LINK_AT_ADMIN);
+		return PageGeneratorManager.getAdminLoginPage(driver);
+
 	}
 
 }

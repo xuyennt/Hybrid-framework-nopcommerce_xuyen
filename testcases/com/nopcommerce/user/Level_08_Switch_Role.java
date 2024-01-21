@@ -11,18 +11,21 @@ import org.testng.annotations.Test;
 
 import commons.BaseTest;
 import commons.GlobalConstants;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.PageGeneratorManager;
-import pageObjects.RegisterPageObject;
+import pageObject.nopCommerce.admin.AdminDashboardPageObject;
+import pageObject.nopCommerce.admin.AdminLoginPageObject;
+import pageObjects.nopCommerce.User.PageGeneratorManager;
+import pageObjects.nopCommerce.User.UserCustomerInforPageObject;
+import pageObjects.nopCommerce.User.UserHomePageObject;
+import pageObjects.nopCommerce.User.UserLoginPageObject;
 
 public class Level_08_Switch_Role extends BaseTest {
-	WebDriver driver;
-	String firstName, lastName, password, emailAddress;
-	HomePageObject homePage;
-	RegisterPageObject registerPage;
-	private LoginPageObject loginPage;
-	LoginPageObject userHomePage;
+	private WebDriver driver;
+	private String userPassword, userEmailAddress, adminEmailAddress, adminPassword;
+	private UserHomePageObject userHomePage;
+	private UserCustomerInforPageObject userCustomerInforpage;
+	private UserLoginPageObject userLoginPage;
+	private AdminLoginPageObject adminLoginPage;
+	private AdminDashboardPageObject adminDashboardPage;
 
 	String projectPath = System.getProperty("user.dir");
 	String osName = System.getProperty("os.name");
@@ -32,27 +35,54 @@ public class Level_08_Switch_Role extends BaseTest {
 	public void beforeClass(String browserName) {
 
 		driver = getBrowserDriver(browserName);
-		homePage = PageGeneratorManager.getHomePage(driver);
-		password = "123456";
-		emailAddress = "Xuyennguyen@gmail.com";
 		userHomePage = PageGeneratorManager.getUserHomePage(driver);
+		userPassword = "123456";
+		userEmailAddress = "Xuyennguyen@gmail.com";
+		adminEmailAddress = "admin@yourstore.com";
+		adminPassword = "admin";
 
 	}
 
 	@Test
 	public void Role_01_User() {
-		loginPage = homePage.clickToLoginLink();
-		
-		//login as User role
-		homePage = loginPage.loginAsUser(emailAddress,password);
-		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
-		
+		userLoginPage = userHomePage.clickToLoginLink();
+
+		// login as User role
+		userHomePage = userLoginPage.loginAsUser(userEmailAddress, userPassword);
+		Assert.assertTrue(userHomePage.isMyAccountLinkDisplayed());
+
+		// home page -> Customer infor
+		userCustomerInforpage = userHomePage.openCustomerInforPage(driver);
+
+		// Customer infor click Logout - > Home Page
+		userHomePage = userCustomerInforpage.clickToLogoutLinkAtUserPage(driver);
+
+		// User home page -> Open Admin page -> Login Page (Admin)
+		userHomePage.openPageUrl(driver, GlobalConstants.PROTAL_ADMIN_PAGE_URL);
+		adminLoginPage = PageGeneratorManager.getAdminLoginPage(driver);
+
+		// Login as Admin role
+		adminDashboardPage = adminLoginPage.loginAsAdmin(adminEmailAddress, adminPassword);
+		Assert.assertTrue(adminDashboardPage.isDashboardHeaderDisplayed());
+
+		// Dashbord Page -> click Logout -> Login Page (Admin)
+		adminLoginPage = adminDashboardPage.clickToLogoutLinkAtAdminPage(driver);
+
 	}
 
 	@Test
 	public void Role_02_Admin() {
+		// Login page (Admin) -> Open USer url -> Home page(User)
+		adminLoginPage.openPageUrl(driver, GlobalConstants.PORTAL_PAGE_URL);
+		userHomePage = PageGeneratorManager.getUserHomePage(driver);
+
+		// home page -> login page(user)
+		userLoginPage = userHomePage.clickToLoginLink();
 		
-		homePage.openPageUrl(driver, GlobalConstants.PROTAL_ADMIN_PAGE_URL);
+		// login as User role
+		userHomePage = userLoginPage.loginAsUser(userEmailAddress, userPassword);
+		Assert.assertTrue(userHomePage.isMyAccountLinkDisplayed());
+
 	}
 
 	@Test
