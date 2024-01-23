@@ -111,6 +111,39 @@ public class BasePage {
 		}
 		driver.switchTo().window(parentID);
 	}
+	//23/01/2024
+	public static By getByLocator(String locatorValue) {
+		By by = null;
+
+		if (locatorValue.startsWith("xpath = ") || locatorValue.startsWith("XPath=")
+				|| locatorValue.startsWith("XPATH=") || locatorValue.startsWith("Xpath")) {
+			by = By.xpath(locatorValue.substring(6));
+
+		}else if(locatorValue.startsWith("css = ") || locatorValue.startsWith("Css=")
+				|| locatorValue.startsWith("CSS=")) {
+			by = By.cssSelector(locatorValue.substring(4));
+		}
+		else if(locatorValue.startsWith("id = ") || locatorValue.startsWith("Id=")
+				|| locatorValue.startsWith("ID=")) {
+			by = By.id(locatorValue.substring(3));
+		}
+		else if(locatorValue.startsWith("name = ") || locatorValue.startsWith("Name=")
+				|| locatorValue.startsWith("NAME=")) {
+			by = By.name(locatorValue.substring(5));
+		}
+		else if(locatorValue.startsWith("class = ") || locatorValue.startsWith("Class=")
+				|| locatorValue.startsWith("CLASS=")) {
+			by = By.className(locatorValue.substring(6));
+		}
+		else if(locatorValue.startsWith("tagname = ") || locatorValue.startsWith("Tagname=")
+				|| locatorValue.startsWith("TAGNAME=")) {
+			by = By.tagName(locatorValue.substring(8));
+		}
+		
+
+		return by;
+	}
+	//end
 
 	public By getByXpath(String xpathLocator) {
 		return By.xpath(xpathLocator);
@@ -120,8 +153,8 @@ public class BasePage {
 		return driver.findElement(By.xpath(xpathLocator));
 	}
 
-	public List<WebElement> getListWebElement(WebDriver driver, String xpathLocator) {
-		return driver.findElements(getByXpath(xpathLocator));
+	public List<WebElement> getListWebElement(WebDriver driver, String locatorValue) {
+		return driver.findElements(getByLocator(locatorValue));
 	}
 
 	public void clickToElement(WebDriver driver, String xpathLocator) {
@@ -154,7 +187,7 @@ public class BasePage {
 		sleepInSecond(1);
 
 		List<WebElement> allItems = new WebDriverWait(driver, 30)
-				.until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByXpath(childItemLocator)));
+				.until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByLocator(childItemLocator)));
 
 		for (WebElement item : allItems) {
 			if (item.getText().trim().equals(expectedItem)) {
@@ -305,15 +338,15 @@ public class BasePage {
 	}
 
 	public void waitForElementVisible(WebDriver driver, String locator) {
-		new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator)));
+		new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOfElementLocated(getByLocator(locator)));
 	}
 
 	public void waitForElementInvisible(WebDriver driver, String locator) {
-		new WebDriverWait(driver, 30).until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(locator)));
+		new WebDriverWait(driver, 30).until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(locator)));
 	}
 
 	public void waitForElementClickable(WebDriver driver, String locator) {
-		new WebDriverWait(driver, 30).until(ExpectedConditions.elementToBeClickable(getByXpath(locator)));
+		new WebDriverWait(driver, 30).until(ExpectedConditions.elementToBeClickable(getByLocator(locator)));
 	}
 
 	// 16/01/24
