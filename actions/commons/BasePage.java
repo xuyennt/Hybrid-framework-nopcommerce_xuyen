@@ -154,7 +154,7 @@ public class BasePage {
 	}
 
 	public List<WebElement> getListWebElement(WebDriver driver, String locatorValue) {
-		return driver.findElements(getByLocator(locatorValue));
+		return driver.findElements(getByXpath(locatorValue));
 	}
 
 	public void clickToElement(WebDriver driver, String xpathLocator) {
@@ -187,7 +187,7 @@ public class BasePage {
 		sleepInSecond(1);
 
 		List<WebElement> allItems = new WebDriverWait(driver, 30)
-				.until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByLocator(childItemLocator)));
+				.until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByXpath(childItemLocator)));
 
 		for (WebElement item : allItems) {
 			if (item.getText().trim().equals(expectedItem)) {
@@ -338,15 +338,15 @@ public class BasePage {
 	}
 
 	public void waitForElementVisible(WebDriver driver, String locator) {
-		new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOfElementLocated(getByLocator(locator)));
+		new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator)));
 	}
 
 	public void waitForElementInvisible(WebDriver driver, String locator) {
-		new WebDriverWait(driver, 30).until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(locator)));
+		new WebDriverWait(driver, 30).until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(locator)));
 	}
 
 	public void waitForElementClickable(WebDriver driver, String locator) {
-		new WebDriverWait(driver, 30).until(ExpectedConditions.elementToBeClickable(getByLocator(locator)));
+		new WebDriverWait(driver, 30).until(ExpectedConditions.elementToBeClickable(getByXpath(locator)));
 	}
 
 	// 16/01/24
