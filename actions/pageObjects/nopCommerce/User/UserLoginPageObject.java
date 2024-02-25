@@ -50,7 +50,7 @@ public UserLoginPageObject(WebDriver driver, WebDriverWait explicitWait) {
 	}
 	
 	public UserHomePageObject loginAsUser(String emailAddress, String password) {
-		// TODO Auto-generated method stub
+		
 		inputToEmailTextbox(emailAddress);
 		inputToPasswordTextbox(password);
 		return clickToLoginButton();

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="3" passed="2" failed="1" skipped="0">
+<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-01-21T10:30:22Z" name="NopCommerce" finished-at="2024-01-21T10:31:02Z" duration-ms="39924">
+  <suite started-at="2024-01-31T02:28:54Z" name="NopCommerce" finished-at="2024-01-31T02:29:10Z" duration-ms="16433">
     <groups>
     </groups>
-    <test started-at="2024-01-21T10:30:22Z" name="Run on Firefox" finished-at="2024-01-21T10:31:02Z" duration-ms="39924">
-      <class name="com.nopcommerce.user.Level_08_Switch_Role">
-        <test-method is-config="true" signature="beforeClass(java.lang.String)[pri:0, instance:com.nopcommerce.user.Level_08_Switch_Role@61322f9d]" started-at="2024-01-21T10:30:22Z" name="beforeClass" finished-at="2024-01-21T10:30:26Z" duration-ms="4805" status="PASS">
+    <test started-at="2024-01-31T02:28:54Z" name="Run on Firefox" finished-at="2024-01-31T02:29:10Z" duration-ms="16433">
+      <class name="com.nopcommerce.user.Level_07_Switch_Page">
+        <test-method is-config="true" signature="beforeClass(java.lang.String)[pri:0, instance:com.nopcommerce.user.Level_07_Switch_Page@510f3d34]" started-at="2024-01-31T02:28:54Z" name="beforeClass" finished-at="2024-01-31T02:29:01Z" duration-ms="7040" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -18,82 +18,31 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeClass -->
-        <test-method signature="Role_01_User()[pri:0, instance:com.nopcommerce.user.Level_08_Switch_Role@61322f9d]" started-at="2024-01-21T10:30:26Z" name="Role_01_User" finished-at="2024-01-21T10:30:51Z" duration-ms="24455" status="FAIL">
-          <exception class="org.openqa.selenium.ElementClickInterceptedException">
-            <message>
-              <![CDATA[Element <a class="nav-link" href="/logout"> is not clickable at point (1337,28) because another element <div id="ajaxBusy"> obscures it
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:25:53'
-System info: host: 'Xuyens-MacBook-Air.local', ip: 'fe80:0:0:0:813:8276:f636:b33%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '13.0.1', java.version: '11.0.14'
-Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 119.0, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20231019122658, moz:geckodriverVersion: 0.31.0, moz:headless: false, moz:platformVersion: 22.1.0, moz:processID: 87429, moz:profile: /var/folders/jf/r0s2_47d4cx..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platform: MAC, platformName: MAC, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: 3f5cf5da-6c1e-4fe5-b281-d60343d417c4]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.ElementClickInterceptedException: Element <a class="nav-link" href="/logout"> is not clickable at point (1337,28) because another element <div id="ajaxBusy"> obscures it
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:25:53'
-System info: host: 'Xuyens-MacBook-Air.local', ip: 'fe80:0:0:0:813:8276:f636:b33%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '13.0.1', java.version: '11.0.14'
-Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 119.0, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20231019122658, moz:geckodriverVersion: 0.31.0, moz:headless: false, moz:platformVersion: 22.1.0, moz:processID: 87429, moz:profile: /var/folders/jf/r0s2_47d4cx..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platform: MAC, platformName: MAC, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: 3f5cf5da-6c1e-4fe5-b281-d60343d417c4
-at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:285)
-at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:84)
-at commons.BasePage.clickToElement(BasePage.java:128)
-at commons.BasePage.clickToLogoutLinkAtAdminPage(BasePage.java:353)
-at com.nopcommerce.user.Level_08_Switch_Role.Role_01_User(Level_08_Switch_Role.java:69)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
-at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
-at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
-at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
-at org.testng.TestRunner.privateRun(TestRunner.java:648)
-at org.testng.TestRunner.run(TestRunner.java:505)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
-at org.testng.SuiteRunner.run(SuiteRunner.java:364)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
-at org.testng.TestNG.runSuites(TestNG.java:1049)
-at org.testng.TestNG.run(TestNG.java:1017)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.ElementClickInterceptedException -->
+        <test-method signature="User_01_Register()[pri:0, instance:com.nopcommerce.user.Level_07_Switch_Page@510f3d34]" started-at="2024-01-31T02:29:01Z" name="User_01_Register" finished-at="2024-01-31T02:29:03Z" duration-ms="2617" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Role_01_User -->
-        <test-method signature="Role_02_Admin()[pri:0, instance:com.nopcommerce.user.Level_08_Switch_Role@61322f9d]" started-at="2024-01-21T10:30:51Z" name="Role_02_Admin" finished-at="2024-01-21T10:31:01Z" duration-ms="9994" status="PASS">
+        </test-method> <!-- User_01_Register -->
+        <test-method signature="User_02_Login()[pri:0, instance:com.nopcommerce.user.Level_07_Switch_Page@510f3d34]" started-at="2024-01-31T02:29:03Z" name="User_02_Login" finished-at="2024-01-31T02:29:05Z" duration-ms="1810" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Role_02_Admin -->
-        <test-method signature="User_05_Switch_Role()[pri:0, instance:com.nopcommerce.user.Level_08_Switch_Role@61322f9d]" started-at="2024-01-21T10:31:01Z" name="User_05_Switch_Role" finished-at="2024-01-21T10:31:01Z" duration-ms="1" status="PASS">
+        </test-method> <!-- User_02_Login -->
+        <test-method signature="User_03_Customer_Infor()[pri:0, instance:com.nopcommerce.user.Level_07_Switch_Page@510f3d34]" started-at="2024-01-31T02:29:05Z" name="User_03_Customer_Infor" finished-at="2024-01-31T02:29:06Z" duration-ms="523" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- User_03_Customer_Infor -->
+        <test-method signature="User_04_Switch_page()[pri:0, instance:com.nopcommerce.user.Level_07_Switch_Page@510f3d34]" started-at="2024-01-31T02:29:06Z" name="User_04_Switch_page" finished-at="2024-01-31T02:29:10Z" duration-ms="3759" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- User_04_Switch_page -->
+        <test-method signature="User_05_Switch_Role()[pri:0, instance:com.nopcommerce.user.Level_07_Switch_Page@510f3d34]" started-at="2024-01-31T02:29:10Z" name="User_05_Switch_Role" finished-at="2024-01-31T02:29:10Z" duration-ms="4" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- User_05_Switch_Role -->
-        <test-method is-config="true" signature="afterClass()[pri:0, instance:com.nopcommerce.user.Level_08_Switch_Role@61322f9d]" started-at="2024-01-21T10:31:01Z" name="afterClass" finished-at="2024-01-21T10:31:02Z" duration-ms="641" status="PASS">
+        <test-method is-config="true" signature="afterClass()[pri:0, instance:com.nopcommerce.user.Level_07_Switch_Page@510f3d34]" started-at="2024-01-31T02:29:10Z" name="afterClass" finished-at="2024-01-31T02:29:10Z" duration-ms="647" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterClass -->
-      </class> <!-- com.nopcommerce.user.Level_08_Switch_Role -->
+      </class> <!-- com.nopcommerce.user.Level_07_Switch_Page -->
     </test> <!-- Run on Firefox -->
   </suite> <!-- NopCommerce -->
 </testng-results>

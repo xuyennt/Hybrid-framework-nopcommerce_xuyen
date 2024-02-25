@@ -12,7 +12,7 @@ public class UserHomePageObject extends BasePage {
 		this.driver = driver;
 	}
 
-	public UserRegisterPageObject clickToRegisterLink() {
+	public UserRegisterPageObject openRegisterPage() {
 		waitForElementClickable(driver, HomePageUI.RESGISTER_LINK);
 		clickToElement(driver, HomePageUI.RESGISTER_LINK);
 		
@@ -21,7 +21,7 @@ public class UserHomePageObject extends BasePage {
 
 	}
 
-	public UserLoginPageObject clickToLoginLink() {
+	public UserLoginPageObject openLoginPage() {
 		waitForElementClickable(driver, HomePageUI.LOGIN_LINK);
 		clickToElement(driver, HomePageUI.LOGIN_LINK);
 		//return new LoginPageObject(driver);
@@ -35,7 +35,7 @@ public class UserHomePageObject extends BasePage {
 		return isElementDisplayed(driver, HomePageUI.MY_ACCOUNT_LINK);
 	}
 
-	public UserCustomerInforPageObject clickToMyAccountLink() {
+	public UserCustomerInforPageObject openMyAccountPage() {
 		// TODO Auto-generated method stub
 		waitForElementClickable(driver, HomePageUI.MY_ACCOUNT_LINK);
 		clickToElement(driver, HomePageUI.MY_ACCOUNT_LINK);

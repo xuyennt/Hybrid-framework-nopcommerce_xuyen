@@ -19,7 +19,7 @@ import pageObjects.nopCommerce.User.PageGeneratorManager;
 import pageObjects.nopCommerce.User.UserRegisterPageObject;
 import pageObjects.nopCommerce.User.UserRewardPointPageObject;
 
-public class Level_07_Switch_Page extends BaseTest {
+public class Level_09_Dynamic_Locator extends BaseTest {
 	WebDriver driver;
 	String firstName, lastName, password, emailAddress;
 	UserHomePageObject homePage;
@@ -51,7 +51,7 @@ public class Level_07_Switch_Page extends BaseTest {
 	}
 
 	@Test
-	public void User_01_Register() {
+	public void User_01_Register_Login() {
 
 		registerPage = homePage.openRegisterPage();
 
@@ -65,19 +65,11 @@ public class Level_07_Switch_Page extends BaseTest {
 
 		Assert.assertEquals(registerPage.getRegisterSuccessMessage(), "Your registration completed");
 
-	}
-
-	@Test
-	public void User_02_Login() {
 		loginPage = homePage.openLoginPage();
 		loginPage.inputToEmailTextbox(emailAddress);
 		loginPage.inputToPasswordTextbox(password);
 		loginPage.clickToLoginButton();
 
-	}
-
-	@Test
-	public void User_03_Customer_Infor() {
 		customerInforPage = homePage.openMyAccountPage();
 
 		Assert.assertTrue(customerInforPage.isCustomerInforPageDisplayed());
@@ -85,34 +77,30 @@ public class Level_07_Switch_Page extends BaseTest {
 	}
 
 	@Test
-	public void User_04_Switch_page() {
-		//customer infor -> address
+	public void User_02_Dynamic_page() {
+		// customer infor -> address
 		addressPage = customerInforPage.openAddressPage(driver);
 		// Address -> My product Review
 		myProductReviewPage = addressPage.openMyProductReviewPage(driver);
-		
-		//My product Review -> Reward Point
+
+		// My product Review -> Reward Point
 		rewardPointPage = myProductReviewPage.openRewardPoint(driver);
-		
-		//Reward PointPage-> Reward Point
+
+		// Reward PointPage-> Reward Point
 		addressPage = rewardPointPage.openAddressPage(driver);
-		
-		//Address -> Reward Point
-		
+
+		// Address -> Reward Point
+
 		rewardPointPage = addressPage.openRewardPoint(driver);
 		// Reward Point -> My Product Review
-		
+
 		myProductReviewPage = rewardPointPage.openMyProductReviewPage(driver);
-		
+
 		customerInforPage = addressPage.openCustomerInforPage(driver);
-		myProductReviewPage= customerInforPage.openMyProductReviewPage(driver);
+		myProductReviewPage = customerInforPage.openMyProductReviewPage(driver);
 
 	}
 
-	@Test
-	public void User_05_Switch_Role() {
-
-	}
 
 	@AfterClass
 	public void afterClass() {

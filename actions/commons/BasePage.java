@@ -111,7 +111,8 @@ public class BasePage {
 		}
 		driver.switchTo().window(parentID);
 	}
-	//23/01/2024
+
+	// 23/01/2024
 	public static By getByLocator(String locatorValue) {
 		By by = null;
 
@@ -119,34 +120,92 @@ public class BasePage {
 				|| locatorValue.startsWith("XPATH=") || locatorValue.startsWith("Xpath")) {
 			by = By.xpath(locatorValue.substring(6));
 
-		}else if(locatorValue.startsWith("css = ") || locatorValue.startsWith("Css=")
+		} else if (locatorValue.startsWith("css = ") || locatorValue.startsWith("Css=")
 				|| locatorValue.startsWith("CSS=")) {
 			by = By.cssSelector(locatorValue.substring(4));
-		}
-		else if(locatorValue.startsWith("id = ") || locatorValue.startsWith("Id=")
+		} else if (locatorValue.startsWith("id = ") || locatorValue.startsWith("Id=")
 				|| locatorValue.startsWith("ID=")) {
 			by = By.id(locatorValue.substring(3));
-		}
-		else if(locatorValue.startsWith("name = ") || locatorValue.startsWith("Name=")
+		} else if (locatorValue.startsWith("name = ") || locatorValue.startsWith("Name=")
 				|| locatorValue.startsWith("NAME=")) {
 			by = By.name(locatorValue.substring(5));
-		}
-		else if(locatorValue.startsWith("class = ") || locatorValue.startsWith("Class=")
+		} else if (locatorValue.startsWith("class = ") || locatorValue.startsWith("Class=")
 				|| locatorValue.startsWith("CLASS=")) {
 			by = By.className(locatorValue.substring(6));
-		}
-		else if(locatorValue.startsWith("tagname = ") || locatorValue.startsWith("Tagname=")
+		} else if (locatorValue.startsWith("tagname = ") || locatorValue.startsWith("Tagname=")
 				|| locatorValue.startsWith("TAGNAME=")) {
 			by = By.tagName(locatorValue.substring(8));
 		}
-		
 
 		return by;
 	}
-	//end
+
+	// end
+	// fix 27-01-24
+	public By getByLocatorNew(String locatorValue) {
+		By by = null;
+		if (locatorValue.startsWith("xpath=") || locatorValue.startsWith("XPath=")
+				|| locatorValue.startsWith("XPATH=")) {
+
+			by = By.xpath(locatorValue.substring(6));
+		} else if (locatorValue.startsWith("css=") || locatorValue.startsWith("Css=")
+				|| locatorValue.startsWith("CSS=")) {
+
+			by = By.cssSelector(locatorValue.substring(4));
+
+		} else if (locatorValue.startsWith("id=") || locatorValue.startsWith("Id=") || locatorValue.startsWith("ID=")) {
+
+			by = By.id(locatorValue.substring(3));
+
+		} else if (locatorValue.startsWith("name=") || locatorValue.startsWith("Name=")
+				|| locatorValue.startsWith("NAME=")) {
+
+			by = By.name(locatorValue.substring(5));
+
+		} else if (locatorValue.startsWith("class=") || locatorValue.startsWith("Class=")
+				|| locatorValue.startsWith("CLASS=")) {
+
+			by = By.className(locatorValue.substring(6));
+
+		}
+		return by;
+	}
+	// end
+	// 30.1
+//	private By getByLocator1(String locatorType) {
+//		By by = null;
+//		System.out.println("Locator type = " + locatorType);
+//		if(locatorType.startsWith("id=")) {
+//			by = By.id(locatorType.substring(3));
+//			
+//		}else if(locatorType.startsWith("class=")){
+//			by = By.className(locatorType.substring(6));
+//		}
+//		else if(locatorType.startsWith("name=")) {
+//			by = By.name(locatorType.substring(5));
+//			
+//		}else if(locatorType.startsWith("css=")) {
+//			by = By.cssSelector(locatorType.substring(5));
+//			
+//		}else if(locatorType.startsWith("xpath=")) {
+//			by = By.xpath(locatorType.substring(6));
+//		}else {
+//			throw new RuntimeException("Locator type is not supported!");
+//		}
+//		return by;
+//	}
 
 	public By getByXpath(String xpathLocator) {
 		return By.xpath(xpathLocator);
+	}
+
+	// 18/02/2024
+	private String getDynamicXpath(String locatorType, String... values) {
+		if(locatorType.startsWith("xpath=")) {
+			locatorType = String.format(locatorType, (Object[])values);
+		}
+		
+		return locatorType;
 	}
 
 	public WebElement getWebElement(WebDriver driver, String xpathLocator) {
@@ -154,11 +213,15 @@ public class BasePage {
 	}
 
 	public List<WebElement> getListWebElement(WebDriver driver, String locatorValue) {
-		return driver.findElements(getByLocator(locatorValue));
+		return driver.findElements(getByXpath(locatorValue));
 	}
 
 	public void clickToElement(WebDriver driver, String xpathLocator) {
 		getWebElement(driver, xpathLocator).click();
+	}
+
+	public void clickToElement(WebDriver driver, String xpathLocator, String... values) {
+		getWebElement(driver, getDynamicXpath(xpathLocator, values)).click();
 	}
 
 	public void senkeyToElement(WebDriver driver, String xpathLocator, String textValue) {
@@ -166,9 +229,18 @@ public class BasePage {
 		element.clear();
 		element.sendKeys(textValue);
 	}
+	//18/02/2024
+	public void senkeyToElement(WebDriver driver, String xpathLocator, String textValue, String... values) {
+		WebElement element = getWebElement(driver, getDynamicXpath(xpathLocator, values));
+		element.clear();
+		element.sendKeys(textValue);
+	}
 
 	public String getElementText(WebDriver driver, String xpathLocator) {
 		return getWebElement(driver, xpathLocator).getText();
+	}
+	public String getElementText(WebDriver driver, String xpathLocator, String... values) {
+		return getWebElement(driver, getDynamicXpath(xpathLocator, values)).getText();
 	}
 
 	public void selectItemInDefaultDropdown(WebDriver driver, String xpathLocator, String textItem) {
@@ -187,7 +259,7 @@ public class BasePage {
 		sleepInSecond(1);
 
 		List<WebElement> allItems = new WebDriverWait(driver, 30)
-				.until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByLocator(childItemLocator)));
+				.until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByXpath(childItemLocator)));
 
 		for (WebElement item : allItems) {
 			if (item.getText().trim().equals(expectedItem)) {
@@ -222,6 +294,9 @@ public class BasePage {
 	public int getElementSize(WebDriver driver, String xpathLocator) {
 		return getListWebElement(driver, xpathLocator).size();
 	}
+	public int getElementSize(WebDriver driver, String xpathLocator, String... values) {
+		return getListWebElement(driver, getDynamicXpath(xpathLocator, values)).size();
+	}
 
 	public void checkToDefaultCheckboxRadio(WebDriver driver, String xpathLocator) {
 		WebElement element = getWebElement(driver, xpathLocator);
@@ -239,6 +314,9 @@ public class BasePage {
 
 	public boolean isElementDisplayed(WebDriver driver, String xpathLocator) {
 		return getWebElement(driver, xpathLocator).isDisplayed();
+	}
+	public boolean isElementDisplayed(WebDriver driver, String xpathLocator, String... values) {
+		return getWebElement(driver, getDynamicXpath(xpathLocator, values)).isDisplayed();
 	}
 
 	public boolean isElementEnabled(WebDriver driver, String xpathLocator) {
@@ -338,15 +416,24 @@ public class BasePage {
 	}
 
 	public void waitForElementVisible(WebDriver driver, String locator) {
-		new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOfElementLocated(getByLocator(locator)));
+		new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator)));
+	}
+	public void waitForElementVisible(WebDriver driver, String locator, String... values) {
+		new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOfElementLocated(getByXpath(getDynamicXpath(locator, values))));
 	}
 
 	public void waitForElementInvisible(WebDriver driver, String locator) {
-		new WebDriverWait(driver, 30).until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(locator)));
+		new WebDriverWait(driver, 30).until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(locator)));
+	}
+	public void waitForElementInvisible(WebDriver driver, String locator, String... values) {
+		new WebDriverWait(driver, 30).until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(getDynamicXpath(locator, values))));
 	}
 
 	public void waitForElementClickable(WebDriver driver, String locator) {
-		new WebDriverWait(driver, 30).until(ExpectedConditions.elementToBeClickable(getByLocator(locator)));
+		new WebDriverWait(driver, 30).until(ExpectedConditions.elementToBeClickable(getByXpath(locator)));
+	}
+	public void waitForElementClickable(WebDriver driver, String locator, String... values) {
+		new WebDriverWait(driver, 30).until(ExpectedConditions.elementToBeClickable(getByXpath(getDynamicXpath(locator, values))));
 	}
 
 	// 16/01/24

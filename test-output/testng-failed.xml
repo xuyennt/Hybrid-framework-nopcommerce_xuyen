@@ -4,13 +4,13 @@
   <test thread-count="5" name="Run on Firefox(failed)">
     <parameter name="browser" value="firefox"/>
     <classes>
-      <class name="com.nopcommerce.user.Level_08_Switch_Role">
+      <class name="com.nopcommerce.user.Level_07_Switch_Page">
         <methods>
-          <include name="beforeClass"/>
+          <include name="User_02_Login"/>
           <include name="afterClass"/>
-          <include name="Role_01_User"/>
+          <include name="beforeClass"/>
         </methods>
-      </class> <!-- com.nopcommerce.user.Level_08_Switch_Role -->
+      </class> <!-- com.nopcommerce.user.Level_07_Switch_Page -->
     </classes>
   </test> <!-- Run on Firefox(failed) -->
 </suite> <!-- Failed suite [NopCommerce] -->

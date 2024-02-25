@@ -38,7 +38,7 @@ public class Level_04_Multiple_Browser extends BaseTest {
 	public void Register_01_Empty_Data() {
 
 		System.out.print("Home Page - Step 01: Click to Register link");
-		homePage.clickToRegisterLink();
+		homePage.openRegisterPage();
 
 		System.out.print("Home Page - Step 02: Click to Register link");
 		registerPage.clickToRegisterButton();
@@ -56,7 +56,7 @@ public class Level_04_Multiple_Browser extends BaseTest {
 	public void Register_02_Invalid_Email() {
 
 		System.out.print("Home Page - Step 01: Click to Register link");
-		homePage.clickToRegisterLink();
+		homePage.openRegisterPage();
 
 		System.out.print("Register Page - Step 02: Input to required fields");
 		registerPage.inputToFirstnameTextbox("Automation");
@@ -78,7 +78,7 @@ public class Level_04_Multiple_Browser extends BaseTest {
 	public void Register_03_Success() {
 
 		System.out.print("Home Page - Step 01: Click to Register link");
-		homePage.clickToRegisterLink();
+		homePage.openRegisterPage();
 
 		System.out.print("Register Page - Step 02: Input to required fields");
 		registerPage.inputToFirstnameTextbox("Automation");
@@ -100,7 +100,7 @@ public class Level_04_Multiple_Browser extends BaseTest {
 	@Test
 	public void Register_04_Existing_Email() {
 		System.out.print("Home Page - Step 01: Click to Register link");
-		homePage.clickToRegisterLink();
+		homePage.openRegisterPage();
 
 		System.out.print("Register Page - Step 02: Input to required fields");
 		registerPage.inputToFirstnameTextbox("Automation");
@@ -121,7 +121,7 @@ public class Level_04_Multiple_Browser extends BaseTest {
 	@Test
 	public void Register_05_Password_Less_Than_6_Chars() {
 		System.out.print("Home Page - Step 01: Click to Register link");
-		homePage.clickToRegisterLink();
+		homePage.openRegisterPage();
 
 		System.out.print("Register Page - Step 02: Input to required fields");
 		registerPage.inputToFirstnameTextbox("Automation");
@@ -143,7 +143,7 @@ public class Level_04_Multiple_Browser extends BaseTest {
 	@Test
 	public void Register_06_Invalid_Confirm_Password() {
 		System.out.print("Home Page - Step 01: Click to Register link");
-		homePage.clickToRegisterLink();
+		homePage.openRegisterPage();
 
 		System.out.print("Register Page - Step 02: Input to required fields");
 		registerPage.inputToFirstnameTextbox("Automation");
