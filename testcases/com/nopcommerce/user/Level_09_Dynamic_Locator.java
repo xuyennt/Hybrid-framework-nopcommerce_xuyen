@@ -96,11 +96,25 @@ public class Level_09_Dynamic_Locator extends BaseTest {
 
 		myProductReviewPage = rewardPointPage.openMyProductReviewPage(driver);
 
-		customerInforPage = addressPage.openCustomerInforPage(driver);
-		myProductReviewPage = customerInforPage.openMyProductReviewPage(driver);
-
 	}
+	@Test
+	public void User_03_Dynamic_page_01() {
+		
+		// My product Review -> Reward Point
+		rewardPointPage = (UserRewardPointPageObject) myProductReviewPage.openPageAtMyAccountByName(driver, "Reward points");
 
+		// Reward PointPage-> Address
+		addressPage = (UserAddressPageObject) rewardPointPage.openPageAtMyAccountByName(driver, "Addresses");
+
+		// Address -> Reward Point
+
+		rewardPointPage = (UserRewardPointPageObject) addressPage.openPageAtMyAccountByName(driver, "Reward points");
+		// Reward Point -> My Product Review
+
+		myProductReviewPage = (UserMyProductReviewPageObject) rewardPointPage.openPageAtMyAccountByName(driver, "My product reviews");
+        //My Product Review - > customer infor
+		customerInforPage = (UserCustomerInforPageObject) myProductReviewPage.openPageAtMyAccountByName(driver, "Customer info");
+	}
 
 	@AfterClass
 	public void afterClass() {
