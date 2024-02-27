@@ -8,13 +8,13 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class BaseTest {
 	String projectPath = System.getProperty("user.dir");
-	String osName = System.getProperty("os.name");
+
 	WebDriver driver;
 	//private WebDriver driverBaseTest;
 
 	protected WebDriver getBrowserDriver(String browserName) {
 		if (browserName.equals("firefox")) {
-			if (osName.contains("Windows")) {
+			if (GlobalConstants.OS_NAME.contains("Windows")) {
 				System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
 			} else {
 				System.setProperty("webdriver.gecko.driver", projectPath + "/browserDrivers/geckodriver");
@@ -32,7 +32,7 @@ public class BaseTest {
 			throw new RuntimeException("Browser name invalid.");
 		}
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(GlobalConstants.LONG_TIMEOUT, TimeUnit.SECONDS);
 		driver.get(GlobalConstants.PORTAL_PAGE_URL);
 
 		return driver;

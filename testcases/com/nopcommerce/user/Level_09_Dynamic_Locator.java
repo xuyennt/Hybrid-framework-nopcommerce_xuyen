@@ -30,9 +30,6 @@ public class Level_09_Dynamic_Locator extends BaseTest {
 	private UserMyProductReviewPageObject myProductReviewPage;
 	private UserRewardPointPageObject rewardPointPage;
 
-	String projectPath = System.getProperty("user.dir");
-	String osName = System.getProperty("os.name");
-
 	@Parameters("browser")
 	@BeforeClass
 	public void beforeClass(String browserName) {

@@ -4,13 +4,13 @@
   <test thread-count="5" name="Run on Firefox(failed)">
     <parameter name="browser" value="firefox"/>
     <classes>
-      <class name="com.nopcommerce.user.Level_07_Switch_Page">
+      <class name="com.nopcommerce.user.Level_09_Dynamic_Locator">
         <methods>
-          <include name="User_02_Login"/>
           <include name="afterClass"/>
+          <include name="User_03_Dynamic_page_01"/>
           <include name="beforeClass"/>
         </methods>
-      </class> <!-- com.nopcommerce.user.Level_07_Switch_Page -->
+      </class> <!-- com.nopcommerce.user.Level_09_Dynamic_Locator -->
     </classes>
   </test> <!-- Run on Firefox(failed) -->
 </suite> <!-- Failed suite [NopCommerce] -->
